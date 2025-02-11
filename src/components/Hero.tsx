@@ -25,7 +25,12 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+          <span style={{
+            background: 'linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
             {t('title')}
           </span>
         </motion.h1>
@@ -47,7 +52,15 @@ export default function Hero() {
         >
           <Link
             href="#contact"
-            className="rounded-lg bg-gradient-to-r from-blue-500 to-teal-500 px-6 py-3 font-semibold text-white transition duration-300 hover:from-blue-600 hover:to-teal-600"
+            style={{
+              background: 'linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191))',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '0.5rem',
+              color: 'white',
+              fontWeight: 600,
+              transition: 'opacity 0.3s ease'
+            }}
+            className="hover:opacity-90"
           >
             {t('callToAction.primary')}
           </Link>
