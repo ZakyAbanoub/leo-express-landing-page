@@ -1,69 +1,146 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useScrollTo } from '@/hooks/useScrollTo';
+import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export default function Header() {
   const t = useTranslations('header');
   const pathname = usePathname();
   const locale = useLocale();
-  const router = useRouter();
-  const scrollTo = useScrollTo();
+  const isRTL = locale === 'ar';
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleLocaleChange = (newLocale: string) => {
-    const currentPath = pathname.replace(`/${locale}`, '') || '/';
-    router.push(`/${newLocale}${currentPath}`);
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+    // Prevent scrolling when menu is open
+    document.body.style.overflow = !isOpen ? 'hidden' : 'unset';
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    scrollTo(id.replace('#', ''));
+  const closeMenu = () => {
+    setIsOpen(false);
+    document.body.style.overflow = 'unset';
   };
+
+  const menuItems = [
+    { href: '#services', label: t('services') },
+    { href: '#features', label: t('features') },
+    { href: '#contact', label: t('contact') },
+  ];
 
   return (
-    <header className="bg-gray-900/50 backdrop-blur-md fixed w-full z-50">
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
-              Leo Express
-            </span>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'backdrop-blur-sm bg-gray-900/95' : 'bg-transparent'}`}>
+      <nav className="container px-6 py-4 mx-auto">
+        <div className="flex justify-between items-center">
+          <Link href="/" className="relative w-[200px] h-[100px]">
+            <Image
+              src="/images/logo.svg"
+              alt="Leo Express"
+              fill
+              className="object-contain"
+              priority
+            />
           </Link>
-          
-          <div className={`hidden md:flex items-center ${locale === 'ar' ? 'space-x-8 space-x-reverse' : 'space-x-8'}`}>
-            <Link href="#services" onClick={(e) => handleClick(e, 'services')} className="text-gray-300 hover:text-white transition duration-300">
-              {t('services')}
-            </Link>
-            <Link href="#features" onClick={(e) => handleClick(e, 'features')} className="text-gray-300 hover:text-white transition duration-300">
-              {t('features')}
-            </Link>
-            <Link href="#contact" onClick={(e) => handleClick(e, 'contact')} className="text-gray-300 hover:text-white transition duration-300">
-              {t('contact')}
-            </Link>
-            <div className="flex items-center">
-              {locale === 'en' ? (
-                <button onClick={() => handleLocaleChange('ar')} className="flex items-center text-gray-300 hover:text-white transition duration-300">
-                  <Image src="/flags/eg.svg" alt="العربية" width={24} height={24} className="rounded-sm hover:scale-110 transition duration-300" />
-                </button>
-              ) : (
-                <button onClick={() => handleLocaleChange('en')} className="flex items-center text-gray-300 hover:text-white transition duration-300">
-                  <Image src="/flags/gb.svg" alt="English" width={24} height={24} className="rounded-sm hover:scale-110 transition duration-300" />
-                </button>
-              )}
-            </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden items-center space-x-8 md:flex rtl:space-x-reverse">
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-gray-300 transition hover:text-white"
+              >
+                {item.label}
+              </Link>
+            ))}
+            <LanguageSwitcher />
           </div>
 
-          <button className="md:hidden text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="text-gray-300 transition md:hidden hover:text-white"
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          >
+            <Bars3Icon className="w-8 h-8" />
           </button>
         </div>
       </nav>
+
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 backdrop-blur-sm bg-gray-900/60 md:hidden"
+          onClick={closeMenu}
+          style={{ zIndex: 40 }}
+        />
+      )}
+
+      {/* Mobile Menu Drawer */}
+      <div
+        className={`fixed top-0 bottom-0 w-[80%] bg-gray-900 shadow-xl transition-transform duration-300 ease-in-out transform md:hidden ${
+          isOpen 
+            ? 'translate-x-0' 
+            : isRTL 
+              ? 'translate-x-full'
+              : '-translate-x-full'
+        } ${isRTL ? 'left-auto right-0' : 'left-0 right-auto'}`}
+        style={{ zIndex: 50 }}
+      >
+        {/* Close Button */}
+        <button
+          onClick={closeMenu}
+          className={`absolute top-4 ${isRTL ? 'left-4' : 'right-4'} text-gray-300 hover:text-white transition p-2 hover:bg-gray-800 rounded-full`}
+          aria-label="Close menu"
+        >
+          <XMarkIcon className="w-8 h-8" />
+        </button>
+
+        <div className="flex flex-col p-8 h-full">
+          {/* Logo */}
+          <Link href="/" className="relative mb-12 w-[200px] h-[100px]" onClick={closeMenu}>
+            <Image
+              src="/images/logo.svg"
+              alt="Leo Express"
+              fill
+              className="object-contain"
+              priority
+            />
+          </Link>
+
+          {/* Menu Items */}
+          <div className="flex flex-col space-y-8">
+            {menuItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-2xl text-gray-300 transition hover:text-white"
+                onClick={closeMenu}
+              >
+                {item.label}
+              </Link>
+            ))}
+            <div className="pt-8 mt-auto">
+              <LanguageSwitcher className="mt-4" />
+            </div>
+          </div>
+        </div>
+      </div>
     </header>
   );
 }
