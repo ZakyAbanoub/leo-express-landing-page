@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "title": "Leo Express Shipping Services",
+    "description": "Our goal is to be the fastest and most trusted in delivering your packages, with customer service that keeps you worry-free from A to Z"
+  },
+  "header": {
+    "services": "Services",
+    "features": "Features",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Leo Express Shipping Services",
+    "description": "Our goal is to be the fastest and most trusted in delivering your packages, with customer service that keeps you worry-free from A to Z",
+    "callToAction": {
+      "primary": "Get Started",
+      "secondary": "Our Services"
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Comprehensive shipping solutions for all your needs",
+    "localDelivery": {
+      "title": "Local Delivery",
+      "description": "Fast and reliable delivery service within your city"
+    },
+    "sameDay": {
+      "title": "Same Day Delivery",
+      "description": "Get your packages delivered on the same day within eligible areas"
+    },
+    "international": {
+      "title": "International Shipping",
+      "description": "Global shipping solutions with tracking"
+    }
+  },
+  "features": {
+    "title": "Why Choose Us",
+    "subtitle": "Experience the difference with our premium features",
+    "secure": {
+      "title": "Secure Shipping",
+      "description": "Your packages are fully insured and handled with care"
+    },
+    "fast": {
+      "title": "Fast Delivery",
+      "description": "Quick and efficient delivery to meet your deadlines"
+    },
+    "tracking": {
+      "title": "Real-time Tracking",
+      "description": "Track your shipments 24/7 with our advanced tracking system"
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Our customer service team is always ready to help"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Get in touch with our team",
+    "info": {
+      "title": "Contact Information",
+      "address": {
+        "title": "Address",
+        "content": "1 Thabet Mikhail St., Giza, Egypt"
+      },
+      "email": {
+        "title": "Email"
+      },
+      "phone": {
+        "title": "Phone",
+        "content": "+201212085508"
+      }
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending message. Please try again."
+    }
+  },
+  "footer": {
+    "description": "Your trusted shipping partner in Egypt, providing fast and reliable delivery services.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "features": "Features",
+    "contact": "Contact",
+    "address": "1 Thabet Mikhail St., Giza, Egypt",
+    "phone": "+201212085508",
+    "email": "info@leoexpress.com",
+    "social": "Follow Us",
+    "rights": "All rights reserved.",
+    "copyright": " 2024 Leo Express. All rights reserved."
+  }
+}

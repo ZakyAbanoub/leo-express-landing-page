@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 17, 24, 39;
+  --background-end-rgb: 17, 24, 39;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .rtl {
+    direction: rtl;
+  }
+}
+
+@keyframes circle-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+  }
+}
+
+@keyframes circle-rotate-reverse {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.1);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.1);
+  }
+}
+
+.animate-circle-rotate {
+  animation: circle-rotate 20s linear infinite;
+}
+
+.animate-circle-rotate-reverse {
+  animation: circle-rotate-reverse 25s linear infinite;
+}
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, 
+    rgba(96, 165, 250, 0) 0%,
+    rgba(96, 165, 250, 0.4) 25%,
+    rgba(45, 212, 191, 0.4) 75%,
+    rgba(45, 212, 191, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: gradientFlow 8s ease infinite;
+}
+
+.section-divider-vertical {
+  width: 2px;
+  background: linear-gradient(180deg, 
+    rgba(96, 165, 250, 0) 0%,
+    rgba(96, 165, 250, 0.4) 25%,
+    rgba(45, 212, 191, 0.4) 75%,
+    rgba(45, 212, 191, 0) 100%
+  );
+  background-size: 100% 200%;
+  animation: gradientFlow 8s ease infinite;
+}
