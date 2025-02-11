@@ -2,7 +2,6 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import GridBackground from './GridBackground';
 import CircleBackground from './CircleBackground';
 
@@ -13,54 +12,21 @@ export default function Hero() {
     <div className="relative min-h-screen">
       <GridBackground />
       <CircleBackground />
-      <motion.div 
-        className="relative flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
-        <motion.h1 
-          className="mb-6 text-4xl font-bold md:text-6xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        >
-          <span style={{
-            background: 'linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191))',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text'
-          }}>
+      <div className="relative flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center">
+        <h1 className="mb-6 text-4xl font-bold md:text-6xl">
+          <span className="gradient-text">
             {t('title')}
           </span>
-        </motion.h1>
+        </h1>
         
-        <motion.p 
-          className="mb-8 max-w-2xl text-lg text-gray-300"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-        >
+        <p className="mb-8 max-w-2xl text-lg text-gray-300">
           {t('description')}
-        </motion.p>
+        </p>
         
-        <motion.div 
-          className="flex flex-wrap justify-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-        >
+        <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="#contact"
-            style={{
-              background: 'linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191))',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '0.5rem',
-              color: 'white',
-              fontWeight: 600,
-              transition: 'opacity 0.3s ease'
-            }}
-            className="hover:opacity-90"
+            className="gradient-button rounded-lg px-6 py-3 font-semibold text-white transition-opacity duration-300 hover:opacity-90"
           >
             {t('callToAction.primary')}
           </Link>
@@ -70,8 +36,8 @@ export default function Hero() {
           >
             {t('callToAction.secondary')}
           </Link>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   );
 }

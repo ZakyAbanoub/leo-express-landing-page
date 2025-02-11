@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent;
+  }
+  
+  .gradient-button {
+    @apply bg-gradient-to-r from-blue-500 to-teal-500 hover:from-blue-600 hover:to-teal-600;
+  }
+}
+
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 17, 24, 39;

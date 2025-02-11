@@ -1,0 +1,10 @@
+.gradient-text {
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-button {
+  background: linear-gradient(to right, rgb(59, 130, 246), rgb(45, 212, 191));
+}
