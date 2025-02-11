@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import GridBackground from './GridBackground';
 import CircleBackground from './CircleBackground';
 
@@ -12,14 +13,38 @@ export default function Hero() {
     <div className="relative min-h-screen">
       <GridBackground />
       <CircleBackground />
-      <div className="relative flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center">
-        <h1 className="mb-6 text-4xl font-bold md:text-6xl">
+      <motion.div 
+        className="relative flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <motion.h1 
+          className="mb-6 text-4xl font-bold md:text-6xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        >
           <span className="bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
             {t('title')}
           </span>
-        </h1>
-        <p className="mb-8 max-w-2xl text-lg text-gray-300">{t('description')}</p>
-        <div className="flex flex-wrap justify-center gap-4">
+        </motion.h1>
+        
+        <motion.p 
+          className="mb-8 max-w-2xl text-lg text-gray-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        >
+          {t('description')}
+        </motion.p>
+        
+        <motion.div 
+          className="flex flex-wrap justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
           <Link
             href="#contact"
             className="rounded-lg bg-gradient-to-r from-blue-500 to-teal-500 px-6 py-3 font-semibold text-white transition duration-300 hover:from-blue-600 hover:to-teal-600"
@@ -32,8 +57,8 @@ export default function Hero() {
           >
             {t('callToAction.secondary')}
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

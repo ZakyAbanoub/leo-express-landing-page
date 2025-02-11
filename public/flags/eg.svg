@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="640px" height="480px" viewBox="0 0 640 480" version="1.1" xmlns="http://www.w3.org/2000/svg">
-    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <rect fill="#CE1126" x="0" y="0" width="640" height="160"></rect>
-        <rect fill="#FFFFFF" x="0" y="160" width="640" height="160"></rect>
-        <rect fill="#000000" x="0" y="320" width="640" height="160"></rect>
-        <g transform="translate(270,180)">
-            <path d="M50,0 C50,27.614 27.614,50 0,50 C-27.614,50 -50,27.614 -50,0 C-50,-27.614 -27.614,-50 0,-50 C27.614,-50 50,-27.614 50,0" fill="#C09300"></path>
-        </g>
-    </g>
+<svg width="900" height="600" viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Strisce della bandiera -->
+  <rect width="900" height="200" fill="#CE1126"/>
+  <rect y="200" width="900" height="200" fill="#FFFFFF"/>
+  <rect y="400" width="900" height="200" fill="#000000"/>
+  
+  <!-- Aquila stilizzata (Emblema dell'Egitto) -->
+  <g transform="translate(450,300) scale(0.8)" fill="#C09300">
+    <path d="M0,-80 C-20,-80 -40,-60 -40,-40 C-40,-20 -20,0 0,0 C20,0 40,-20 40,-40 C40,-60 20,-80 0,-80 Z"/>
+    <path d="M-60,0 L60,0 L60,20 L-60,20 Z"/>
+    <path d="M-40,20 L40,20 C40,60 20,80 0,80 C-20,80 -40,60 -40,20 Z"/>
+  </g>
 </svg>
