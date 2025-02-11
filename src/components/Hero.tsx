@@ -13,10 +13,8 @@ export default function Hero() {
       <GridBackground />
       <CircleBackground />
       <div className="relative flex min-h-screen flex-col items-center justify-center px-6 py-32 text-center">
-        <h1 className="mb-6 text-4xl font-bold md:text-6xl">
-          <span className="gradient-text">
-            {t('title')}
-          </span>
+        <h1 className="mb-6 text-4xl font-bold md:text-6xl text-blue-400">
+          {t('title')}
         </h1>
         
         <p className="mb-8 max-w-2xl text-lg text-gray-300">
@@ -26,7 +24,7 @@ export default function Hero() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="#contact"
-            className="gradient-button rounded-lg px-6 py-3 font-semibold text-white transition-opacity duration-300 hover:opacity-90"
+            className="rounded-lg bg-blue-500 px-6 py-3 font-semibold text-white transition-opacity duration-300 hover:opacity-90"
           >
             {t('callToAction.primary')}
           </Link>
