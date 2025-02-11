@@ -1,8 +1,11 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { createSharedPathnamesNavigation } from 'next-intl/navigation';
+
+const { Link, usePathname } = createSharedPathnamesNavigation({ locales: ['en', 'ar'] });
 
 export default function LanguageSwitcher() {
   const t = useTranslations('languageSwitcher');
@@ -14,7 +17,8 @@ export default function LanguageSwitcher() {
     // Salva la lingua nel local storage
     localStorage.setItem('NEXT_LOCALE', newLocale);
     // Naviga alla nuova lingua
-    router.replace(pathname, { locale: newLocale });
+    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+    router.push(newPath);
   };
 
   return (

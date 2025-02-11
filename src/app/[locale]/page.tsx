@@ -1,11 +1,15 @@
-import { useTranslations } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 import Hero from '@/components/Hero';
-import Services from '@/components/Services';
 import Features from '@/components/Features';
+import Services from '@/components/Services';
 import Contact from '@/components/Contact';
 
-export default function Home() {
-  const t = useTranslations('home');
+export default function Home({
+  params: { locale }
+}: {
+  params: { locale: string };
+}) {
+  unstable_setRequestLocale(locale);
 
   return (
     <div className="relative">

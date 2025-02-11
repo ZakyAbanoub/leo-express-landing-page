@@ -1,20 +1,17 @@
-import { Inter, Cairo } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { NextIntlClientProvider } from 'next-intl';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { locales } from '@/config';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GridBackground from '@/components/GridBackground';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
-const cairo = Cairo({ 
-  subsets: ['latin', 'arabic'],
-  variable: '--font-cairo'
-});
 
 export function generateStaticParams() {
-  return [{ locale: 'en' }, { locale: 'ar' }];
+  return locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({ params: { locale } }: { params: { locale: string } }) {
@@ -59,6 +56,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  unstable_setRequestLocale(locale);
   const messages = await getMessages(locale);
 
   return (
@@ -73,7 +71,7 @@ export default async function LocaleLayout({
         <meta name="theme-color" content="#1e40af" />
         <link rel="manifest" href="/favicon/site.webmanifest" />
       </head>
-      <body className={`${inter.className} ${cairo.variable} ${locale === 'ar' ? 'font-cairo' : ''} bg-gray-900 relative overflow-x-hidden`}>
+      <body className={`${inter.className} bg-gray-900 relative overflow-x-hidden`}>
         <GridBackground />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="relative min-h-screen flex flex-col overflow-hidden">
